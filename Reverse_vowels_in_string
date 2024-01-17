@@ -1,0 +1,34 @@
+# Intuition
+The problem is asking to reverse the vowels in a given string. The intuition here is to identify the vowels in the string, reverse their order, and then substitute them back into the original string.
+
+# Approach
+Define a list of vowels.
+Convert the input string into a list of characters for easier manipulation.
+Iterate through the characters in the string, identifying and storing vowels in a separate list while replacing them with a placeholder character, such as '*'.
+Iterate through the string again, replacing the placeholder '*' with the reversed vowels from the list.
+Convert the list of characters back into a string and return the result.
+
+# Complexity
+- Time complexity:
+Time complexity: O(n), where n is the length of the input string. The algorithm iterates through the string twice, and each iteration takes linear time.
+- Space complexity: O(n), as additional space is used to store the vowels in a list.
+
+# Code
+```
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        VOWELS = ["a", "e", "i", "o", "u"]
+
+        string = [x for x in s]
+        letters = []
+        for i in range(len(string)):
+            if string[i].lower() in VOWELS:
+                letters.append(string[i])
+                string[i] = '*'
+
+        for i in range(len(string)):
+            if string[i] == '*':
+                string[i] = letters.pop()
+
+        return ''.join(string)
+```
